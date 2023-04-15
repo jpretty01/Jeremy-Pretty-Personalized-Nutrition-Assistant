@@ -1,3 +1,5 @@
+# Jeremy Pretty
+# Final Project CSC 510
 import random
 import pandas as pd
 from surprise import Dataset, Reader
@@ -6,7 +8,7 @@ from surprise.model_selection import train_test_split
 from surprise import accuracy
 import os
 
-
+# Path to the dataset
 path_to_csv = os.path.join(os.path.dirname(__file__), 'en.openfoodfacts.org.products.tsv')
 
 # Load the dataset
@@ -54,6 +56,7 @@ def predict_ratings(user_id, product_ids):
         ratings.append((product_id, rating.est))
     return ratings
 
+# Getting the user information, with checks to ensure proper information
 def get_user_info():
     age = int(input("Please enter your age: "))
     while age < 0:
@@ -87,6 +90,7 @@ def get_user_info():
 
     return age, weight, activity_level, dietary_preference, health_goal, allergies, intolerances, macro_goals
 
+# Generating the meal plan
 def generate_meal_plan(user_id, dietary_preference, allergies, intolerances, health_goal):
     meal_category = meal_categories[dietary_preference]
     filtered_data = data[data['main_category'].str.contains(meal_category, case=False, na=False)]
@@ -127,10 +131,8 @@ def main():
     for i, meal in enumerate(meal_plan):
         print(f"{i + 1}. {meal}")
 
-#if __name__ == "__main__":
-    #main()
 
-
+# Creating a user interface for easy reading
 import tkinter as tk
 from tkinter import ttk
 def submit_form():
